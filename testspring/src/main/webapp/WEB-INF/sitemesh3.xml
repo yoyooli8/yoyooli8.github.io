@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <mapping path="/*" decorator="/WEB-INF/modules/decorators/decorator.jsp" />
+    
+    <mapping path="/assets/*" exclue="true" />
+    
+    <content-processor>
+        <tag-rule-bundle class="com.ai.frame.test.springmvc.sitemesh.MyTagRuleBundle" />
+    </content-processor>
+</sitemesh>

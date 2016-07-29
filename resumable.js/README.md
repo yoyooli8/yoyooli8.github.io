@@ -8,6 +8,13 @@ Resumable.js does not have any external dependencies other than the `HTML5 File 
 
 Samples and examples are available in the `samples/` folder. Please push your own as Markdown to help document the project.
 
+## 简译
+Resumable.js is 是利用[HTML5 API](http://www.w3.org/TR/FileAPI/)提供大文件拆分上传的一个JavaScript 库.
+
+这个库被设计用来处理大文件的继点续传功能，上传大文件时会把大文件拆分成许多小文件块，某个文件块上传失败时，会在网络正常时可以继续上传，
+而不会导致整个文件上传失败，上传过程中允许用户暂时，取消，和继续上传。因为只有当前数据块受映响，而不会导致整个文件重新上传。
+
+这个库除理依赖`HTML5 File APK`外不依赖任何其他库，他只是把大文件分隔成许多小文件块，所以他支持Firefox 4+, Chrome 11+, Safari 6+ and Internet Explorer 10+
 
 ## How can I use it?
 

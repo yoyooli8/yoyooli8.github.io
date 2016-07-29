@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/task    http://www.springframework.org/schema/task/spring-task-3.0.xsd ">
  		
  	<!-- spring mybatis集成 -->  
-    <bean id="sqlSessionFactory" class="org.mybaits.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="mapperLocations">
             <array>
@@ -26,11 +26,13 @@
                 <!-- pageHelper -->
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
+                        <value>
                         dialect=mysql
                         reasonable=true
                         supportMethodsArguments=true
                         params=count=countSql
                         autoRuntimeDialect=true
+                        </value>
                     </property>
                 </bean>
             </array>
@@ -40,6 +42,6 @@
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.ai.frame.test.springmvc.mybatis.mapper" />
         <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
-        <property name="markerInterface" value="com.ai.frame.test.springmvc.mybatis.util.MyMapper"/>
+        <property name="markerInterface" value="com.ai.frame.test.springmvc.mybatis.util.MyMapper" />
     </bean>
 </beans>

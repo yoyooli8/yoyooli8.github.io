@@ -7,12 +7,17 @@ import org.slf4j.LoggerFactory;
 
 import com.ai.frame.test.springmvc.exception.FrameException;
 import com.ai.frame.test.springmvc.facade.IServiceFacade;
+import org.springframework.stereotype.Component;
+
+import com.ai.frame.test.springmvc.exception.FrameException;
+import com.ai.frame.test.springmvc.facade.IServiceFacade;
+import com.ai.frame.test.springmvc.facade.SpringContextUtil;
 import com.ai.frame.test.springmvc.facade.dto.InputObject;
 import com.ai.frame.test.springmvc.util.ClassUtil;
 import com.ai.frame.test.springmvc.util.DateUtil;
 import com.ai.frame.test.springmvc.util.JsonResult;
-import com.ai.frame.test.springmvc.util.SpringContextUtil;
 
+@Component(value="serviceFacade")
 public class CommonServiceFacade<T> implements IServiceFacade<T>{
     private Logger log = LoggerFactory.getLogger(CommonServiceFacade.class);
     
@@ -49,6 +54,7 @@ public class CommonServiceFacade<T> implements IServiceFacade<T>{
                 errmsg = e.getCause().getMessage();
             }
             rtnmsg = errmsg;
+            log.error(rtnmsg, e);
             return JsonResult.getError(errmsg, e);
         }finally{
             long usedTime = DateUtil.endTime();

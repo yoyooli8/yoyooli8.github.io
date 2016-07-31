@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <!--注解扫描包 配置扫描目录 会扫描报下的所有controller -->
+    <context:component-scan base-package="com.ai.frame.test.springmvc.controller" />
+    
+    <!-- 启用MVC -->
+    <mvc:annotation-driven />
+	<!--注解映射器 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/> -->
+	<!--注解适配器 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> -->
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> -->
+		<property name="prefix" value="/WEB-INF/modules/" />
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+    <!-- 静态资源访问配置 -->
+    <!-- <mvc:default-servlet-handler/> -->
+    <mvc:resources mapping="/assets/images/**"  location="/assets/images/"    />
+    <mvc:resources mapping="/assets/scripts/**" location="/assets/scripts/"   />
+    <mvc:resources mapping="/assets/css/**"     location="/assets/css/"       />
+    <mvc:resources mapping="/assets/fonts/**"   location="/assets/fonts/"     />
+    <mvc:resources location="/WEB-INF/modules/" mapping="/WEB-INF/modules/**" />
+
+    <!-- 文件上传配置 -->
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 指定所上传文件的总大小不能超过5000KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+        <property name="maxUploadSize" value="300000000" />
+    </bean>
+    
+    <!-- 采用注释的方式配置bean -->  
+    <!-- <context:annotation-config/> -->
+
+    <!--proxy-target-class="true"强制使用cglib代理 如果为false则spring会自动选择 -->
+    <!-- <aop:aspectj-autoproxy /> -->
+    <!-- <bean id="controllerIntercepter" class="com.ai.frame.test.springmvc.aop.ControllerIntercepter2" /> -->
+    
+    <aop:config>
+        <aop:pointcut expression="execution(* com.ai.frame.test.springmvc.controller.TestMvcController.*(..))" id="pointcut"/>
+        <aop:aspect ref="controllerIntercepter">
+            <aop:before pointcut-ref="pointcut"  method="beforeAdvice"/>
+             <aop:after pointcut-ref="pointcut"  method="afterAdvice"/>
+             <aop:around pointcut-ref="pointcut" method="aroundAdvice"/>
+        </aop:aspect>
+    </aop:config>
+    
+</beans>

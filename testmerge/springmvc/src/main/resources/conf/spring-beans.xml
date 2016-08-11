@@ -11,6 +11,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
         http://www.springframework.org/schema/task    http://www.springframework.org/schema/task/spring-task-3.0.xsd ">
+ 	
  	<!--注解扫描包 配置扫描目录 会扫描报下的所有controller -->
     <context:component-scan base-package="com.ai.frame.test.springmvc">
         <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.aop.*" />
@@ -22,7 +23,7 @@
         <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.resolvers.*" />
         <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.sitemesh.*" />
         <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.util.*" />
-    </context:component-scan>   	
+    </context:component-scan>	
  	<!-- 采用注释的方式配置bean -->  
     <!-- <context:annotation-config/> -->
 
@@ -39,4 +40,9 @@
              <aop:around pointcut-ref="pointcut" method="aroundAdvice"/>
         </aop:aspect>
     </aop:config> -->
+    
+    <bean id="testSetValue" class="com.ai.frame.test.springmvc.exception.TestSetValue">
+        <property name="basePackage" value="${com.mybatis.mapper.basePackage}" />
+        <property name="pageHelperProperties" value="${com.mybatis.pageHelper.properties}" />
+    </bean>
 </beans>

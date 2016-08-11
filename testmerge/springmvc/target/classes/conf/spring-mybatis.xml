@@ -11,19 +11,19 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
         http://www.springframework.org/schema/task    http://www.springframework.org/schema/task/spring-task-3.0.xsd ">
- 		
+ 	
+ 	<context:property-placeholder location="classpath:config.properties" />	
  	<!-- spring mybatis集成 -->  
-    <bean id="sqlSessionFactory" class="org.mybaits.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="mapperLocations">
             <array>
                 <value>classpath:mapper/*.xml</value>
             </array>
         </property>
-        <property name="typeAliasesPackage" value="com.ai.frame.test.springmvc.bo" />
+        <property name="typeAliasesPackage" value="${com.mybatis.pageHelper.typeAliasesPackage}" />
         <property name="plugins">
             <array>
-                <!-- pageHelper -->
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
                         <value>
@@ -39,9 +39,13 @@
         </property>
     </bean>
     <!-- mapper集成 -->
-    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+    <bean id="configurer" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!-- <bean id="configurer" class="com.ai.frame.test.springmvc.mybatis.ext.MapperScannerConfigurer"> -->
         <property name="basePackage" value="com.ai.frame.test.springmvc.mybatis.mapper" />
+        <!-- <property name="basePackage" value="${com.mybatis.mapper.basePackage}" /> -->
+        <property name="processPropertyPlaceHolders" value="true" />
         <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
-        <property name="markerInterface" value="com.ai.frame.test.springmvc.mybatis.util.MyMapper"/>
+        <property name="markerInterface" value="com.ai.frame.test.springmvc.mybatis.util.MyMapper" />
     </bean>
+    
 </beans>

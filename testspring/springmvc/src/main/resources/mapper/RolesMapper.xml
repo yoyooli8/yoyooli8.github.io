@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.frame.test.springmvc.mybatis.mapper.RolesMapper" >
+  <resultMap id="rolesResultMap" type="com.ai.frame.test.springmvc.bo.Roles" >
+    <id column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="descript"  property="descript"     jdbcType="VARCHAR" />
+    <result column="status"    property="status"   jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getRolesByIds" parameterType="java.util.List" resultMap="rolesResultMap">
+    select role_id,role_name,`descript`,`status`  
+    from roles
+    where `status` = 1 and role_id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+        (#{item.roleId})
+    </foreach>
+  </select>
+</mapper>

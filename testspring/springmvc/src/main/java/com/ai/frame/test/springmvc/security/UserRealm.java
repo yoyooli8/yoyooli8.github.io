@@ -39,6 +39,12 @@ public class UserRealm extends AuthorizingRealm{
     @PostConstruct
     protected void postConstruct(){
         setCredentialsMatcher(pwdCredentialsMatcher);
+        
+        setCachingEnabled(true);
+        setAuthenticationCachingEnabled(true);
+        setAuthenticationCacheName("authenticationCache");
+        setAuthorizationCachingEnabled(true);
+        setAuthorizationCacheName("authorizationCache");
     }
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals){

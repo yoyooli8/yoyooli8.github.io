@@ -19,6 +19,7 @@
             classpath:conf/spring-jdbc.xml
             classpath:conf/spring-mybatis.xml
             classpath:conf/spring-beans.xml
+            classpath:conf/spring-shiro.xml
         </param-value>
     </context-param>
     
@@ -52,14 +53,19 @@
     
 	<filter>
 	   <filter-name>sitemesh</filter-name>
-	   <!-- <filter-class>com.ai.frame.test.springmvc.filters.MySiteMeshFilter</filter-class> -->
 	   <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
 	</filter>
-	<filter-mapping>
-        <filter-name>encodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
 	
+	<!-- shiro 安全过滤器 -->
+	<filter>
+       <filter-name>shiroFilter</filter-name>
+       <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+       <async-supported>true</async-supported>
+       <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
     
 	<servlet>
 		<servlet-name>spMvc</servlet-name>
@@ -76,12 +82,20 @@
 	</servlet-mapping>
  
     <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
-        <!-- <dispatcher>INCLUDE</dispatcher> 
-        <dispatcher>FORWARD</dispatcher> 
-        <dispatcher>REQUEST</dispatcher>  --> 
     </filter-mapping>
+    
     
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

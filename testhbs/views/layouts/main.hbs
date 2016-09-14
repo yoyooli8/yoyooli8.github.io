@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+  </head>
+  <body>
+    {{> topbar}}
+    <div class="ch-container">
+      {{> leftMenu}}
+      <div id="content" class="col-lg-10 col-sm-10">
+        {{{body}}}
+      </div>
+    </div>
+    
+    <!-- scripts -->
+    <script type="text/javascript" src="/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+  </body>
+</html>

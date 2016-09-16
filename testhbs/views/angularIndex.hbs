@@ -1,0 +1,48 @@
+<div ng-app="testApp">
+    <div ng-controller="navController">
+        <ul class="breadcrumb">
+            <li ng-repeat="nav in navigations">
+                <a href="#"><span ng-bind="nav.lable"></span> </a>
+            </li>
+        </ul>
+    </div>
+    <div class="row" ng-controller="tableController">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-content">
+                    <div class="alert alert-info" ng-show="tableError"></div>
+                    <div class="dataTables_wrapper" role="grid">
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive dataTable">
+                            <thead>
+                                <tr role="row">
+                                    <th ng-repeat="head in tableHeaders">
+                                        <span ng-bind="head.name"></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody role="alert">
+                                <tr ng-repeat="row in tableRows">
+                                    <td class="center" ng-repeat="col in row.rowColumns">
+                                        <span ng-bind="col.name"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <div class="row">
+                            <div class="col-md-12 center-block">
+                                <div class="pagination">
+                                    <ul class="pagination">
+                                        <li ng-repeat="page in tablePages">
+                                            <a href="#"><span ng-bind="page.name"></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/javascripts/modules/testApp.js"></script>

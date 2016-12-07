@@ -24,6 +24,10 @@
     <!-- controller层接受要用@RequestBody，例如：-->
     <!-- @ResponseBody-->
     <!-- public JsonResult test(@RequestBody InputObject<User> inobj)-->
-    <script type="text/javascript" src="assets/scripts/login/login.js"></script>
+    <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="true"></script>
+    <script type="text/javascript" >
+        var rtn = QC.api(api, paras, fmt, method)
+        console.log(rtn);
+    </script>
 </body>
 </html>

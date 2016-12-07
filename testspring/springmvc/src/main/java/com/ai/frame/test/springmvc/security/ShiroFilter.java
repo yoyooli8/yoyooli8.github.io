@@ -38,17 +38,17 @@ public class ShiroFilter extends ShiroFilterFactoryBean{
     private Map<String, String> getUrlFilterChainsMap(){
         Map<String, String> urlFilterChains = new HashMap<String, String>();
         //mock
-        urlFilterChains.put("index.jsp", "anon");
-        urlFilterChains.put("unauthorized.jsp", "anon");
-        urlFilterChains.put("login.jsp", "authc");
-        urlFilterChains.put("/index", "authc");
-        urlFilterChains.put("logout", "anon");
-        urlFilterChains.put("/assets/images/**",  "anon");
-        urlFilterChains.put("/assets/scripts/**", "anon");
-        urlFilterChains.put("/assets/css/**",     "anon");
-        urlFilterChains.put("/assets/fonts/**",   "anon");
+        //urlFilterChains.put("index.jsp", "anon");
+        //urlFilterChains.put("unauthorized.jsp", "anon");
+        //urlFilterChains.put("login.jsp", "authc");
+        //urlFilterChains.put("/index", "authc");
+        //urlFilterChains.put("logout", "anon");
+        //urlFilterChains.put("/assets/images/**",  "anon");
+        //urlFilterChains.put("/assets/scripts/**", "anon");
+        //urlFilterChains.put("/assets/css/**",     "anon");
+        //urlFilterChains.put("/assets/fonts/**",   "anon");
         
-        urlFilterChains.put("/**", "user");
+        urlFilterChains.put("/**", "anon");
         
         return urlFilterChains;
     }

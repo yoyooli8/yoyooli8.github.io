@@ -1,8 +1,10 @@
 package com.ai.frame.test.springmvc.util;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +13,64 @@ import org.slf4j.LoggerFactory;
 public class ClassUtil{
     private static Logger log = LoggerFactory.getLogger(ClassUtil.class);
     
+    public static void copyProperties(Object dest,Object orig){
+        List<Field> fields = new ArrayList<Field>();
+        getAllFields(orig.getClass(),fields);
+        List<String> hasSetedval = new ArrayList<String>();
+        
+        for(Field field:fields){
+            field.setAccessible(true);
+            String fieldName = field.getName();
+            if("serialVersionUID".equals(fieldName))continue;
+            if(hasSetedval.contains(fieldName)) continue;
+            try {
+                Object fieldVal  = field.get(orig);
+                
+                Field destField = getAllFields(dest.getClass(),fieldName);
+                if(destField!=null){
+                    destField.setAccessible(true);
+                    destField.set(dest, fieldVal);
+                    
+                    hasSetedval.add(fieldName);
+                }
+            } catch (Exception e) {
+                log.error("set file[{}]'s value error:{}",fieldName,e.getMessage());
+            }
+        }
+    }
+    public static void getAllFields(Class<?> cls,List<Field> allFields){
+        Field[] fields = cls.getDeclaredFields();
+        if(fields!=null){
+            Collections.addAll(allFields, fields);
+        }
+        Class<?> supercls = cls.getSuperclass();
+        if(supercls != Object.class){
+            getAllFields(supercls,allFields);
+        }else{
+            return;
+        }
+    }
+    public static Field getAllFields(Class<?> cls,String fieldName){
+        try {
+            Field field = cls.getDeclaredField(fieldName);
+            if(field!=null){
+                return field;
+            }
+            Class<?> supercls = cls.getSuperclass();
+            if(supercls != Object.class){
+                return getAllFields(supercls,fieldName);
+            }else{
+                return null;
+            }
+        } catch (Exception e) {
+            Class<?> supercls = cls.getSuperclass();
+            if(supercls != Object.class){
+                return getAllFields(supercls,fieldName);
+            }else{
+                return null;
+            }
+        } 
+}
     public static <T>T newInstance(Class<T> cls){
         try{
             return cls.newInstance();

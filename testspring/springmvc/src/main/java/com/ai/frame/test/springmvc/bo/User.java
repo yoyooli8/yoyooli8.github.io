@@ -1,5 +1,6 @@
 package com.ai.frame.test.springmvc.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-public class User {
+@SuppressWarnings("serial")
+public class User implements Serializable{
     //自增长型主键
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

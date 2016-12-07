@@ -1,6 +1,6 @@
 var path = window.location.origin || window.location.protocol+"//"+window.location.host;
 require.config({
-	baseUrl:path+"/springmvc/assets/scripts",
+	baseUrl:path+"/assets/scripts",
 	
     shim:{
     	'bootstrap': {

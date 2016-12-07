@@ -1,8 +1,8 @@
-require(["require","jquery","hbs!template/one"],function(){
+require(["jquery","hbs!template/one"],function(require){
 	var $   = require('jquery');
 	var tpl = require('hbs!template/one');
+	console.log('-----------------------------');
 	
-	console.log(111111);
 	$('#loginBtn').click(function(){
         var username = $('input[name="username"]').val();
         var passwd   = $('input[name="passwd"]').val();

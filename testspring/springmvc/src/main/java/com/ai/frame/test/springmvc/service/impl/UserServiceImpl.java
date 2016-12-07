@@ -16,9 +16,9 @@ import com.ai.frame.test.springmvc.bo.Permissions;
 import com.ai.frame.test.springmvc.bo.Roles;
 import com.ai.frame.test.springmvc.bo.User;
 import com.ai.frame.test.springmvc.bo.UserRole;
+import com.ai.frame.test.springmvc.dao.UserDao;
 import com.ai.frame.test.springmvc.exception.FrameException;
 import com.ai.frame.test.springmvc.facade.dto.InputObject;
-import com.ai.frame.test.springmvc.mybatis.mapper.UserMapper;
 import com.ai.frame.test.springmvc.security.LoginToken;
 import com.ai.frame.test.springmvc.service.IPermissionsService;
 import com.ai.frame.test.springmvc.service.IRolesService;
@@ -29,7 +29,7 @@ import com.ai.frame.test.springmvc.util.SecurityUtil;
 
 import tk.mybatis.mapper.entity.Example;
 @Service(value="userService")
-public class UserServiceImpl extends BaseService<User> implements IUserService{
+public class UserServiceImpl implements IUserService{
     private final static String SEED = "com.wxy.frame";
     @Autowired
     @Qualifier(value="userRoleService")
@@ -40,6 +40,9 @@ public class UserServiceImpl extends BaseService<User> implements IUserService{
     @Autowired
     @Qualifier(value="permissionsService")
     private IPermissionsService permissionsService;
+    @Autowired
+    @Qualifier(value="userDao")
+    private UserDao userDao;
     
     public boolean login(InputObject<User> inobj){
         User user   = inobj.getParam();
@@ -67,11 +70,11 @@ public class UserServiceImpl extends BaseService<User> implements IUserService{
         String pwd   = SecurityUtil.pwd2dbpwd(user.getUserpwd(),salt);
         user.setUserpwd(pwd);
         
-        return super.save(user);
+        return userDao.save(user);
     }
     
     public int updateNotNull(InputObject<User> inobj){
-        return super.updateNotNull(inobj.getParam());
+        return userDao.updateNotNull(inobj.getParam());
     }
     public int updateUserRoles(InputObject<User> inobj){
         User user         = inobj.getParam();
@@ -133,19 +136,15 @@ public class UserServiceImpl extends BaseService<User> implements IUserService{
         return user;
     }
     public User getUserByName(InputObject<User> inobj){
-        Example example = new Example(User.class);
-        example.createCriteria().andEqualTo("userName", inobj.getParam().getUserName());
-        example.orderBy("userId");
-        
-        List<User> users = super.selectByExample(example);
-        if(users!=null&&users.size()>0){
-            return users.get(0);
-        }
-        return null;
+//        Example example = new Example(User.class);
+//        example.createCriteria().andEqualTo("userName", inobj.getParam().getUserName());
+//        example.orderBy("userId");
+//        
+//        List<User> users = userDao.selectByExample(example);
+//        if(users!=null&&users.size()>0){
+//            return users.get(0);
+//        }
+        return userDao.getUserByName(inobj.getParam().getUserName());
     }
     
-    @Autowired
-    public void setUserMapper(UserMapper mapper){
-        this.mapper = mapper;
-    }
 }

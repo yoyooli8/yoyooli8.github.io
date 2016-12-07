@@ -49,13 +49,13 @@
     <!-- <aop:aspectj-autoproxy /> -->
     <!-- <bean id="controllerIntercepter" class="com.ai.frame.test.springmvc.aop.ControllerIntercepter2" /> -->
     
-    <aop:config>
+    <!-- <aop:config>
         <aop:pointcut expression="execution(* com.ai.frame.test.springmvc.controller.TestMvcController.*(..))" id="pointcut"/>
         <aop:aspect ref="controllerIntercepter">
             <aop:before pointcut-ref="pointcut"  method="beforeAdvice"/>
              <aop:after pointcut-ref="pointcut"  method="afterAdvice"/>
              <aop:around pointcut-ref="pointcut" method="aroundAdvice"/>
         </aop:aspect>
-    </aop:config>
+    </aop:config> -->
     
 </beans>

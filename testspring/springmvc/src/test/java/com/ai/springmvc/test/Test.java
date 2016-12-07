@@ -22,13 +22,14 @@ public class Test {
     @Before
     @SuppressWarnings({ "unchecked", "resource" })
     public void setUp(){
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"conf/spring-jdbc.xml","conf/spring-mybatis.xml","conf/spring-beans.xml"});
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"conf/spring-jdbc.xml","conf/spring-mybatis.xml","conf/spring-beans.xml","conf/spring-cache.xml"});
         
         serviceFacade = context.getBean("serviceFacade", IServiceFacade.class);
         rolesserviceFacade = context.getBean("serviceFacade", IServiceFacade.class);
     }
     @org.junit.Test
     public void testGetUserByUserName(){
+        long start = System.currentTimeMillis();
         User usermock = new User();
         usermock.setUserName("管理员用户1");
         InputObject<User> inobj = new InputObject<User>();
@@ -38,12 +39,19 @@ public class Test {
         
         JsonResult result = serviceFacade.excute(inobj);
         Assert.assertNotNull(result);
-        System.out.println(result);
+        System.out.println("----->用时:"+(System.currentTimeMillis() - start)+" ms "+result);
         
         System.out.println(result.getRtnCode());
         System.out.println(result.getRtnMsg());
         
         Assert.assertEquals(JsonResult.SUCCESS, result.getRtnCode());
+        
+        start = System.currentTimeMillis();
+        for(int i=0;i<10;i++){
+            serviceFacade.excute(inobj);
+        }
+        
+        System.out.println("----->用时:"+(System.currentTimeMillis() - start)+" ms");
     }
     @org.junit.Test
     public void testUpdateUserRoles(){

@@ -16,5 +16,16 @@
     <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
         (#{item.roleId})
     </foreach>
+    group by p.perm_id
+  </select>
+  <select id="getPermissionsByMenuIds" parameterType="java.util.List" resultMap="permissionsResultMap">
+    SELECT p.perm_id,perm_name,`desc`,`status` 
+    FROM permissions p
+    INNER JOIN menu_perm mp on mp.perm_id = p.perm_id
+    WHERE `status` =1 and menuId in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+        (#{item.menuId})
+    </foreach>
+    group by p.perm_id
   </select>
 </mapper>

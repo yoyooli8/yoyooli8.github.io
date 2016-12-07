@@ -23,6 +23,7 @@
         <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.resolvers.*" />
         <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.sitemesh.*" />
         <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.util.*" />
+        <context:exclude-filter type="regex" expression="com.ai.frame.test.springmvc.security.*" />
     </context:component-scan>	
  	<!-- 采用注释的方式配置bean -->  
     <!-- <context:annotation-config/> -->

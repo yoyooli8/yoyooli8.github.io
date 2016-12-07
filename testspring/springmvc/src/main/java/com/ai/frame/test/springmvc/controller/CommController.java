@@ -20,11 +20,21 @@ public class CommController {
         System.out.println("测试post入参.");
         return JsonResult.getSuccess("测试post入参.", inobj);
     }
-	@RequestMapping(value="index",method=RequestMethod.GET)
+	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public String login(){
 		System.out.println("跳转到登录页面.");
 		return "login";
 	}
+	@RequestMapping(value="login.do",method=RequestMethod.GET)
+    public String logindo(){
+        System.out.println("跳转到登录页面.");
+        return "login";
+    }
+	@RequestMapping(value="login2",method=RequestMethod.GET)
+    public String login2(){
+        System.out.println("跳转到登录页面.");
+        return "qq_login";
+    }
 	@RequestMapping(value="requirehbs",method=RequestMethod.GET)
 	public String requirehbs(){
 		System.out.println("跳转到require测试页面.");

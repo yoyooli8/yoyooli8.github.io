@@ -41,8 +41,8 @@
         </aop:aspect>
     </aop:config> -->
     
-    <bean id="testSetValue" class="com.ai.frame.test.springmvc.exception.TestSetValue">
+    <!-- <bean id="testSetValue" class="com.ai.frame.test.springmvc.exception.TestSetValue">
         <property name="basePackage" value="${com.mybatis.mapper.basePackage}" />
         <property name="pageHelperProperties" value="${com.mybatis.pageHelper.properties}" />
-    </bean>
+    </bean> -->
 </beans>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: ch8_2
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: a
+Implementation-Vendor-Id: com.wisely
+Build-Jdk: 1.8.0_101
+Implementation-URL: http://projects.spring.io/spring-boot/ch8_2/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

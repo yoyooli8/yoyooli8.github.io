@@ -1,13 +1,16 @@
 package com.ai.wxy.frame.springboot.services.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="jpa_user")
-public class User{
+public class User implements Serializable{
     @Id @GeneratedValue
     private Integer userId;
     private String userName;

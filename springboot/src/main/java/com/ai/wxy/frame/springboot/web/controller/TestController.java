@@ -1,21 +1,51 @@
 package com.ai.wxy.frame.springboot.web.controller;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ai.wxy.frame.springboot.web.controller.vo.Msg;
 import com.ai.wxy.frame.springboot.web.controller.vo.TestVo;
 
-@RestController
+import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
+
+@Controller
 public class TestController{
-    @RequestMapping("/")
-    public String hello(String name){
-        return "Hello " + name;
+    @ApiIgnore//使用该注解忽略这个API
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
+    @RequestMapping(value ="/home",method=RequestMethod.GET)
+    @ApiOperation(value="测试接口", notes="测试thymeleaf接口详细描述")
+    public String index(Model model){
+        Msg msg =  new Msg("测试标题","测试内容","额外信息，只对管理员显示");
+        model.addAttribute("msg", msg);
+        return "home";
+    }
+    
+    @ApiIgnore//使用该注解忽略这个API
+    @CacheEvict(value={"userInfo","userRoleInfo"},allEntries=true)
+    @RequestMapping("/")
+    @ResponseBody
+    public String hello(){
+        return "Welcome to Spring Boot demo.";
+    }
+    
+    @ApiIgnore//使用该注解忽略这个API
     @RequestMapping("/hello")
+    @ResponseBody
     public String hello2(String name){
         return "Hello ---> " + name;
     }
-    @RequestMapping("/getUser")
+    
+    @RequestMapping(value="/getUser",method=RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value="测试用户接口", notes="测试获取用户接口详细描述")
     public TestVo getUser(String name){
         TestVo user = new TestVo();
         user.setName(name);

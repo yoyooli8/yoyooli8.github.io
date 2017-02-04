@@ -55,20 +55,27 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-redis</artifactId>
         </dependency>
-   
+
 	    <!-- fast json -->
 	    <dependency>
 		    <groupId>com.alibaba</groupId>
 		    <artifactId>fastjson</artifactId>
 		    <version>1.2.24</version>
 	    </dependency>
+	   
 	    <!-- druid -->
 	    <dependency>
 	        <groupId>com.alibaba</groupId>
 	        <artifactId>druid</artifactId>
 	        <version>1.0.27</version>
 	    </dependency>
-	    
+
+	    <!-- activemq support -->
+	    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+	    </dependency>
+
 	    <!-- thymeleaf -->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
@@ -80,7 +87,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        
+      
         <!-- 静态资源包 -->
          <!-- <dependency>
             <groupId>org.webjars</groupId>

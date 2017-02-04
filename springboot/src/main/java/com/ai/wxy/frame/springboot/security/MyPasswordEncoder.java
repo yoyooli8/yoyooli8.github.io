@@ -3,10 +3,7 @@ package com.ai.wxy.frame.springboot.security;
 import static org.springframework.security.crypto.util.EncodingUtils.concatenate;
 import static org.springframework.security.crypto.util.EncodingUtils.subArray;
 
-import java.security.NoSuchAlgorithmException;
-
 import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -80,11 +77,11 @@ public class MyPasswordEncoder implements PasswordEncoder{
         
     }
     
-    private byte[] digestRawPwd(CharSequence rawPassword,byte[] salt){
-        byte[] digestpwd = decode(rawPassword);
-        byte[] digest    = digestFinal(digestpwd,salt);
-        return digest;
-    }
+//    private byte[] digestRawPwd(CharSequence rawPassword,byte[] salt){
+//        byte[] digestpwd = decode(rawPassword);
+//        byte[] digest    = digestFinal(digestpwd,salt);
+//        return digest;
+//    }
     
     private String encode(CharSequence rawPassword, byte[] salt) {
         byte[] digestpwd = digest(rawPassword);

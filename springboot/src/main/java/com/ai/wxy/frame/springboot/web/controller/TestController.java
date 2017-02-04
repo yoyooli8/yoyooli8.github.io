@@ -1,5 +1,7 @@
 package com.ai.wxy.frame.springboot.web.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ai.wxy.frame.springboot.services.service.mq.IQueueFactory;
+import com.ai.wxy.frame.springboot.services.service.mq.IRabbitMqListener;
 import com.ai.wxy.frame.springboot.web.controller.vo.Msg;
 import com.ai.wxy.frame.springboot.web.controller.vo.TestVo;
 
@@ -15,6 +19,9 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
 public class TestController{
+    @Resource(name="springbootMqSend")
+    private IQueueFactory queueFactory;
+    
     @ApiIgnore//使用该注解忽略这个API
     @RequestMapping("/login")
     public String login(){
@@ -26,6 +33,15 @@ public class TestController{
         Msg msg =  new Msg("测试标题","测试内容","额外信息，只对管理员显示");
         model.addAttribute("msg", msg);
         return "home";
+    }
+    
+    @RequestMapping(value ="/sendMsg",method=RequestMethod.POST)
+    @ApiOperation(value="测试发送消息", notes="测试测试发送消息接口详细描述")
+    @ResponseBody
+    public String sendMsg(String msg){
+        queueFactory.sendMsg(msg,IRabbitMqListener.ROUTINGKEY);
+        
+        return "success";
     }
     
     @ApiIgnore//使用该注解忽略这个API

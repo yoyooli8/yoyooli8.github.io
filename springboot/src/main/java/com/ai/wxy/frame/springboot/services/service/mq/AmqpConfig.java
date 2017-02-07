@@ -1,4 +1,4 @@
-package com.ai.wxy.frame.springboot.services.service.mq;
+/*package com.ai.wxy.frame.springboot.services.service.mq;
 
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.Binding;
@@ -56,7 +56,7 @@ public class AmqpConfig{
         return template;  
     }  
     
-    /**  
+    *//**  
      * 针对消费者配置  
      * 1. 设置交换机类型  
      * 2. 将队列绑定到交换机  
@@ -65,7 +65,7 @@ public class AmqpConfig{
         HeadersExchange ：通过添加属性key-value匹配  
         DirectExchange:按照routingkey分发到指定队列  
         TopicExchange:多关键字匹配  
-     */  
+     *//*  
     @Bean  
     public DirectExchange defaultExchange() {  
         return new DirectExchange(EXCHANGE);  
@@ -98,3 +98,4 @@ public class AmqpConfig{
         return container;
     }
 }
+*/

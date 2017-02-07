@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ai.wxy.frame.springboot.services.service.mq.IQueueFactory;
-import com.ai.wxy.frame.springboot.services.service.mq.IRabbitMqListener;
+import com.ai.wxy.frame.springboot.services.service.mq.ext.AmqpConfig;
 import com.ai.wxy.frame.springboot.web.controller.vo.Msg;
 import com.ai.wxy.frame.springboot.web.controller.vo.TestVo;
 
@@ -39,7 +39,7 @@ public class TestController{
     @ApiOperation(value="测试发送消息", notes="测试测试发送消息接口详细描述")
     @ResponseBody
     public String sendMsg(String msg){
-        queueFactory.sendMsg(msg,IRabbitMqListener.ROUTINGKEY);
+        queueFactory.sendMsg(msg, AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.test");
         
         return "success";
     }

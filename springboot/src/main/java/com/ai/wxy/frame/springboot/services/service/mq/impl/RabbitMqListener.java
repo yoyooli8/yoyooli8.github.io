@@ -1,4 +1,4 @@
-package com.ai.wxy.frame.springboot.services.service.mq.impl;
+/*package com.ai.wxy.frame.springboot.services.service.mq.impl;
 
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.Binding;
@@ -47,3 +47,4 @@ public class RabbitMqListener implements IRabbitMqListener{
         System.out.println("RabbitMqListener receive msg : " + msg); 
     }
 }
+*/

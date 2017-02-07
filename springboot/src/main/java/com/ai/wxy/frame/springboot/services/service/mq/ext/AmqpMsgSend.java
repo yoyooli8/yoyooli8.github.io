@@ -1,22 +1,20 @@
-/*package com.ai.wxy.frame.springboot.services.service.mq.impl;
+package com.ai.wxy.frame.springboot.services.service.mq.ext;
 
-import java.io.IOException;
 import java.util.UUID;
-import java.util.concurrent.TimeoutException;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.wxy.frame.springboot.services.service.mq.AmqpConfig;
 import com.ai.wxy.frame.springboot.services.service.mq.IQueueFactory;
-import com.rabbitmq.client.Connection;
 @Component("springbootMqSend")
-public class SpringbootMqSend implements IQueueFactory{
+public class AmqpMsgSend implements IQueueFactory{
     private RabbitTemplate rabbitTemplate;
+//    @Autowired
+//    private TopicExchange topicExchangeDurable;
     @Autowired
-    public SpringbootMqSend(RabbitTemplate rabbitTemplate){
+    public AmqpMsgSend(RabbitTemplate rabbitTemplate){
         this.rabbitTemplate = rabbitTemplate;
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback(){
             @Override
@@ -31,16 +29,13 @@ public class SpringbootMqSend implements IQueueFactory{
             
         }); 
     }
+    
     @Override
-    public void sendMsg(String msg,String msgType){
+    public void sendMsg(String msg,String exchange,String msgType){
         CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());  
-        rabbitTemplate.convertAndSend(AmqpConfig.EXCHANGE, msgType, msg, correlationId);
-    }
-
-    @Override
-    public Connection newConnection() throws IOException,TimeoutException{
-        return null;
+        rabbitTemplate.convertAndSend(exchange, msgType, msg, correlationId);
+//        Queue queue = new Queue(UUID.randomUUID().toString().replace("-", ""),false);
+//        BindingBuilder.bind(queue).to(topicExchangeDurable).with(AmqpConfig.TOPICROUTINGKEY);
     }
 
 }
-*/

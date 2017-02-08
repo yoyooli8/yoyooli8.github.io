@@ -22,7 +22,6 @@ import org.springframework.http.converter.HttpMessageConverter;
 import com.ai.wxy.frame.springboot.services.dao.UserCrudRepository;
 import com.ai.wxy.frame.springboot.services.dao.support.CustomRepositoryFactoryBean;
 import com.ai.wxy.frame.springboot.services.service.mq.IQueueFactory;
-import com.ai.wxy.frame.springboot.services.service.mq.ext.AmqpConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -35,6 +34,8 @@ public class ApplicationStarter implements ApplicationListener{
     UserCrudRepository userCrudRepository;
     @Resource(name="springbootMqSend")
     private IQueueFactory queueSend;
+    @Resource(name="springbootMqDirectSend")
+    private IQueueFactory directQueueSend;
     @Bean
     public HttpMessageConverters fastJsonHttpMessageConverters() {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
@@ -52,19 +53,21 @@ public class ApplicationStarter implements ApplicationListener{
     @Override
     public void onApplicationEvent(ApplicationEvent event){
         if (event instanceof ApplicationEnvironmentPreparedEvent) { // 初始化环境变量
-            queueSend.sendMsg("======初始化环境变量开始=======", AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.PreparedEvent");
+            queueSend.sendMsg("======初始化环境变量开始=======", "spring-boot-topicRouting.PreparedEvent");
         }else if (event instanceof ApplicationPreparedEvent) { // 初始化完成
-            queueSend.sendMsg("======应用初始化完成=======", AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.Event");
+            queueSend.sendMsg("======应用初始化完成=======", "spring-boot-topicRouting.Event");
         } else if (event instanceof ContextRefreshedEvent) { // 应用刷新
-            queueSend.sendMsg("======应用刷新开始=======", AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.RefreshedEvent");
+            queueSend.sendMsg("======应用刷新开始=======", "spring-boot-topicRouting.RefreshedEvent");
         }else if (event instanceof ApplicationReadyEvent) {// 应用已启动完成
-            queueSend.sendMsg("======应用已启动完成=======", AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.ReadyEvent");
+            queueSend.sendMsg("======应用已启动完成=======", "spring-boot-topicRouting.ReadyEvent");
+            
+            directQueueSend.sendMsg("======应用已启动完成=======", com.ai.wxy.frame.springboot.services.service.mq.AmqpConfig.ROUTINGKEY);
         }else if (event instanceof ContextStartedEvent) { // 应用启动，需要在代码动态添加监听器才可捕获
-            queueSend.sendMsg("======应用启动开始=======", AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.StartedEvent");
+            queueSend.sendMsg("======应用启动开始=======", "spring-boot-topicRouting.StartedEvent");
         }else if (event instanceof ContextStoppedEvent) { // 应用停止
-            queueSend.sendMsg("======应用停止=======", AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.StoppedEvent");
+            queueSend.sendMsg("======应用停止=======", "spring-boot-topicRouting.StoppedEvent");
         }else if (event instanceof ContextClosedEvent) { // 应用关闭
-            queueSend.sendMsg("======应用关闭=======", AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.ClosedEvent");
+            queueSend.sendMsg("======应用关闭=======", "spring-boot-topicRouting.ClosedEvent");
         }else{}
     }
 }

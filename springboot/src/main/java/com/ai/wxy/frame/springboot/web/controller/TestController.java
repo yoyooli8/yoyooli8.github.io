@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ai.wxy.frame.springboot.services.service.mq.IQueueFactory;
-import com.ai.wxy.frame.springboot.services.service.mq.ext.AmqpConfig;
 import com.ai.wxy.frame.springboot.web.controller.vo.Msg;
 import com.ai.wxy.frame.springboot.web.controller.vo.TestVo;
 
@@ -21,6 +20,8 @@ import springfox.documentation.annotations.ApiIgnore;
 public class TestController{
     @Resource(name="springbootMqSend")
     private IQueueFactory queueFactory;
+    @Resource(name="springbootMqDirectSend")
+    private IQueueFactory directQueueSend;
     
     @ApiIgnore//使用该注解忽略这个API
     @RequestMapping("/login")
@@ -39,8 +40,9 @@ public class TestController{
     @ApiOperation(value="测试发送消息", notes="测试测试发送消息接口详细描述")
     @ResponseBody
     public String sendMsg(String msg){
-        queueFactory.sendMsg(msg, AmqpConfig.TOPICEXCHANGE,"spring-boot-topicRouting.test");
+        queueFactory.sendMsg(msg,"spring-boot-topicRouting.test");
         
+        directQueueSend.sendMsg(msg,com.ai.wxy.frame.springboot.services.service.mq.AmqpConfig.ROUTINGKEY);
         return "success";
     }
     

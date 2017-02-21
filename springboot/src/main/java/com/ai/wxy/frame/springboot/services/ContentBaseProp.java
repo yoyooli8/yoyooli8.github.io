@@ -3,7 +3,7 @@ package com.ai.wxy.frame.springboot.services;
 public enum ContentBaseProp{
     PROP_TPLID("tplId","模板ID"),
     PROP_CONTENTID("contentId","数据结点标识"),
-    PROP_NAME("name","姓名"),
+    PROP_NAME("name","名称"),
     PROP_VALIDE("valide","是否有效"),
     PROP_CREATERUID("createrUid","创建人ID"),
     PROP_CREATERUNAME("createrUname","创建人"),

@@ -12,12 +12,21 @@ public class ContentNode extends BaseBean{
     private static final String LABLESUFIX = "_lable";
     private String templateUid;
     private String desc;
+    private Integer order;
     private List<ContentProp> props;
     public ContentNode(){
         super();
         setNodeType(CNodeType.CONTENT_NODE.getType());
     }
     
+    public Integer getOrder(){
+        return order;
+    }
+
+    public void setOrder(Integer order){
+        this.order = order;
+    }
+
     public String getTemplateUid(){
         return templateUid;
     }

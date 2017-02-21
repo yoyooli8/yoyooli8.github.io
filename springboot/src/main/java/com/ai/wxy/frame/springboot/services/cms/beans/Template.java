@@ -21,5 +21,7 @@ public class Template extends BaseBean{
     public void setTplprops(List<TemplateProp> tplprops){
         this.tplprops = tplprops;
     }
-    
+    public void addTplProp(TemplateProp tplProp){
+        this.tplprops.add(tplProp);
+    }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import com.ai.wxy.frame.springboot.services.domain.User;
+import com.ai.wxy.frame.springboot.services.user.domain.User;
 
 @SuppressWarnings("serial")
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails{

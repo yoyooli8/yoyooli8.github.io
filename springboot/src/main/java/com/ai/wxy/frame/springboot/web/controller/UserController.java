@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ai.wxy.frame.springboot.core.caller.ResponseResult;
-import com.ai.wxy.frame.springboot.services.domain.User;
-import com.ai.wxy.frame.springboot.services.service.IUserService;
+import com.ai.wxy.frame.springboot.services.user.domain.User;
+import com.ai.wxy.frame.springboot.services.user.service.IUserService;
 
 import io.swagger.annotations.ApiOperation;
 

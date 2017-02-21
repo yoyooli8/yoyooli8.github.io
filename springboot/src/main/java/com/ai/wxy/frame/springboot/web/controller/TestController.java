@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ai.wxy.frame.springboot.services.service.mq.IQueueFactory;
+import com.ai.wxy.frame.springboot.services.user.service.mq.IQueueFactory;
 import com.ai.wxy.frame.springboot.web.controller.vo.Msg;
 import com.ai.wxy.frame.springboot.web.controller.vo.TestVo;
 
@@ -28,6 +28,11 @@ public class TestController{
     public String login(){
         return "login";
     }
+    @ApiIgnore//使用该注解忽略这个API
+    @RequestMapping("/login2")
+    public String login2(){
+        return "login-mui";
+    }
     @RequestMapping(value ="/home",method=RequestMethod.GET)
     @ApiOperation(value="测试接口", notes="测试thymeleaf接口详细描述")
     public String index(Model model){
@@ -42,7 +47,7 @@ public class TestController{
     public String sendMsg(String msg){
         queueFactory.sendMsg(msg,"spring-boot-topicRouting.test");
         
-        directQueueSend.sendMsg(msg,com.ai.wxy.frame.springboot.services.service.mq.AmqpConfig.ROUTINGKEY);
+        directQueueSend.sendMsg(msg,com.ai.wxy.frame.springboot.services.user.service.mq.AmqpConfig.ROUTINGKEY);
         return "success";
     }
     

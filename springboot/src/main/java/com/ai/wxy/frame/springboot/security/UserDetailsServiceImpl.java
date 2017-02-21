@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.ai.wxy.frame.springboot.services.domain.User;
-import com.ai.wxy.frame.springboot.services.domain.UserRole;
-import com.ai.wxy.frame.springboot.services.service.IUserService;
+import com.ai.wxy.frame.springboot.services.user.domain.User;
+import com.ai.wxy.frame.springboot.services.user.domain.UserRole;
+import com.ai.wxy.frame.springboot.services.user.service.IUserService;
 
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired

@@ -1,5 +1,7 @@
 package com.ai.wxy.springboot;
 
+import java.util.Date;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
@@ -32,6 +34,8 @@ public class TestMyPasswordEncoder{
     }
     @Test
     public void testAESEncode(){
+//        org.apache.commons.lang3.time.DateFormatUtils.format(new Date(), "yyyyMMddHHmmss");
+        
         String content  = "47e977c89bdf75b290aa373f1ea356fc";
         String password = "www.asiainfo.com";
         byte[] input = Hex.decode(content);

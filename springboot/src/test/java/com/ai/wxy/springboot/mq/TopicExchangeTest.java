@@ -1,6 +1,5 @@
 package com.ai.wxy.springboot.mq;
 
-import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
@@ -11,7 +10,8 @@ import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 
-import com.ai.wxy.frame.springboot.services.service.mq.ext.AmqpConfig;
+import com.ai.wxy.frame.springboot.services.user.service.mq.ext.AmqpConfig;
+
 
 
 public class TopicExchangeTest{

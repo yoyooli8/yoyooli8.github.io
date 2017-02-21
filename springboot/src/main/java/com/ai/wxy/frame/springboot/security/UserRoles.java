@@ -2,7 +2,7 @@ package com.ai.wxy.frame.springboot.security;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import com.ai.wxy.frame.springboot.services.domain.UserRole;
+import com.ai.wxy.frame.springboot.services.user.domain.UserRole;
 
 @SuppressWarnings("serial")
 public class UserRoles implements GrantedAuthority{

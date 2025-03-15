@@ -32,6 +32,11 @@
 16K    securityforcs7.py
 24K    installmongofor3.6.py
 
+```
+### 只显示当前文件夹的总大小
+```shell
+#  du -hs
+2.4M    .
 ```。">
 <meta property="og:title" content="linux查看目录或是文件占用大小">
 <meta property="og:description" content="# linux查看目录或是文件占用大小
@@ -56,6 +61,11 @@
 16K    securityforcs7.py
 24K    installmongofor3.6.py
 
+```
+### 只显示当前文件夹的总大小
+```shell
+#  du -hs
+2.4M    .
 ```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yoyooli8.github.io/post/linux-cha-kan-mu-lu-huo-shi-wen-jian-zhan-yong-da-xiao.html">
@@ -145,7 +155,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 4.0K    security.log
 16K    securityforcs7.py
 24K    installmongofor3.6.py
-</pre></div></div>
+</pre></div>
+<h3>只显示当前文件夹的总大小</h3>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span>  du -hs</span>
+2.4M    <span class="pl-c1">.</span></pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -204,7 +217,11 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+cmButton=document.getElementById("cmButton");
+    span=document.createElement("span");
+    span.setAttribute("class","Counter");
+    span.innerHTML="1";
+    cmButton.appendChild(span);
 
 
 function openComments(){

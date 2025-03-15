@@ -21,3 +21,8 @@
 24K    installmongofor3.6.py
 
 ```
+### 只显示当前文件夹的总大小
+```shell
+#  du -hs
+2.4M    .
+```

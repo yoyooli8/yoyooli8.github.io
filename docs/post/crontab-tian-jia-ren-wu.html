@@ -10,7 +10,7 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="**1. 打开 Crontab 编辑器:**
+<meta name="description" content="### 1. 打开 Crontab 编辑器
 
 使用以下命令打开当前用户的 crontab 文件以进行编辑：
 
@@ -20,7 +20,7 @@ crontab -e
 
 如果你是第一次使用 `crontab -e`，可能会提示你选择一个编辑器。">
 <meta property="og:title" content="crontab添加任务">
-<meta property="og:description" content="**1. 打开 Crontab 编辑器:**
+<meta property="og:description" content="### 1. 打开 Crontab 编辑器
 
 使用以下命令打开当前用户的 crontab 文件以进行编辑：
 
@@ -99,11 +99,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p><strong>1. 打开 Crontab 编辑器:</strong></p>
+<div class="markdown-body" id="postBody"><h3>1. 打开 Crontab 编辑器</h3>
 <p>使用以下命令打开当前用户的 crontab 文件以进行编辑：</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">crontab -e</pre></div>
 <p>如果你是第一次使用 <code class="notranslate">crontab -e</code>，可能会提示你选择一个编辑器。 通常选择 <code class="notranslate">nano</code> 或 <code class="notranslate">vi/vim</code>。  输入对应的数字并按 Enter 键即可。</p>
-<p><strong>2. Crontab 条目的格式:</strong></p>
+<h3>2. Crontab 条目的格式</h3>
 <p>每一行代表一个 cron 任务，格式如下：</p>
 <pre class="notranslate"><code class="notranslate">*     *     *   *    *  command to be executed
 -     -     -   -    -
@@ -122,7 +122,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><strong>day of week:</strong> 星期几 (0-7, 0 和 7 都表示星期日)</li>
 <li><strong>command:</strong> 要执行的命令</li>
 </ul>
-<p><strong>3. 添加定时任务:</strong></p>
+<h3>3. 添加定时任务</h3>
 <p>在打开的编辑器中，在文件的末尾添加你的 cron 任务。</p>
 <p><strong>一些常见的示例:</strong></p>
 <ul>
@@ -190,15 +190,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 </li>
 </ul>
-<p><strong>4. 保存并退出:</strong></p>
+<h3>4. 保存并退出</h3>
 <ul>
 <li><strong>nano:</strong>  按 <code class="notranslate">Ctrl + X</code>，然后按 <code class="notranslate">Y</code> 确认保存，最后按 <code class="notranslate">Enter</code> 键退出。</li>
 <li><strong>vim/vi:</strong>  按 <code class="notranslate">Esc</code> 键，然后输入 <code class="notranslate">:wq</code> 并按 <code class="notranslate">Enter</code> 键退出 (保存并退出)。</li>
 </ul>
-<p><strong>5. 验证:</strong></p>
+<h3>5. 验证</h3>
 <p>Crontab 会自动保存你的更改。  可以使用以下命令查看当前用户的 cron 任务列表：</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">crontab -l</pre></div>
-<p><strong>6. 其他有用的命令:</strong></p>
+<h3>6. 其他有用的命令</h3>
 <ul>
 <li>
 <p><strong>移除所有 cron 任务:</strong></p>
@@ -206,7 +206,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><strong>警告:</strong> 这个命令会删除 <em>所有</em> 你的 cron 任务，使用前请务必小心。</p>
 </li>
 </ul>
-<p><strong>最佳实践:</strong></p>
+<h3>最佳实践</h3>
 <ul>
 <li>
 <p><strong>详细注释:</strong> 在 crontab 文件中添加注释，说明每个任务的作用和目的。  注释行以 <code class="notranslate">#</code> 开头。</p>
@@ -409,6 +409,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>
 
 </html>
